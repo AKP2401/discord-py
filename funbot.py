@@ -1,6 +1,7 @@
 import discord
 import asyncio
-#import os
+import os
+from dotenv import load_dotenv
 import ranstr
 import requests
 import datetime
@@ -10,19 +11,19 @@ from sid import gt32
 from sid import gt64
 from discord.ext import commands
 from discord.ext.commands import has_permissions
-#from discord.utils import get
-import config
 
-Token = config.token
-TRN_Key = config.TRN_key
-stkey = config.Steam_Key
-gifkey = config.gif_api
-cov_key = config.covid_api
+load_dotenv()
+
+Token = os.getenv('token')
+TRN_Key = os.getenv('TRN_key')
+stkey = os.getenv('Steam_Key')
+gifkey = os.getenv('gif_api')
+cov_key = os.getenv('covid_api')
 
 kommand = commands.Bot(command_prefix="!!")
 client = discord.Client()
 
-ver = "v1.6.1"
+ver = "v1.6.2"
 
 @kommand.event
 async def on_ready():
