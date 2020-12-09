@@ -40,10 +40,6 @@ async def on_command_error(ctx, error):
 @kommand.command()
 async def hello(ctx, *arg):
     if len(arg) == 0:
-        if ctx.message.author.id == 246879769726025729:
-            await ctx.send(
-                "`Shut The Fuck Up ,Slut`\n`Sit The Fuck Down`\n`You aren't allowed to open your MOUTH for anything other than a BLOWJOB`")
-        else:
             await ctx.send("Hello " + ctx.message.author.name + "!!!")
     for i in arg:
         await ctx.send('Hello ' + i + ' !!')
@@ -64,11 +60,7 @@ async def kill(ctx, *args):
 
 @kommand.command()
 async def pat(ctx, *arg):
-    if len(arg) == 0 and ctx.message.author.id == 648879762504155169:
-        await ctx.send(
-            "Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat Pat \nBui Bui is patted super dupper well, hehe")
-    else:
-        if len(arg) == 0:
+    if len(arg) == 0:
             await ctx.send("Pat Pat Pat !! " + ctx.message.author.name + " has been patted very well and now, is happy")
     for i in arg:
         if i == 'me':
