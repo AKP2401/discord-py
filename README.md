@@ -1,4 +1,4 @@
-# discord-py
+# discord-py-bot
  Basic Discord Bot with python
 
 ## Features
@@ -10,7 +10,7 @@
 * Stats for :
   * DOTA 2
   * CSGO
-  * R6 Siege(currently not working)
+  * R6 Siege (currently not working)
   * Fortnite
 * COVID Tracker
 * GIF search (has randomness)

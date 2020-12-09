@@ -394,17 +394,8 @@ async def randoms(ctx):
         await ctx.send("Oopsie!! You too slow.\nBe faster next time")
 
 @kommand.command()
-async def games(ctx):
-    game = {'Among Us'  : 'https://drive.google.com/file/d/1NZfKF8XYswmJTAQhjlCvCIgpNAGcfHod/view?usp=sharing',
-            'Pummel Party':'https://drive.google.com/file/d/141NzinurrJ11mWfiN1mHiyEUTyEnisty/view?usp=sharing'}
-    for i in game:
-        await ctx.send(f"{i} : {game[i]}")
-    await ctx.send("`Report broken links`")
-    await  ctx.send("`Visit http://fitgirl-repacks.site/ for more games`")
-
-@kommand.command()
 async def about(ctx):
-    await ctx.send("`Created by W.A.R`\n`Special thanks to Terisa Chan and\n periya_pussy_ponpensiero`")
+    await ctx.send("`Created by W.A.R#4670`\n`Special thanks to Terisa Chan and\n periya_pussy_ponpensiero`")
     await ctx.send(f"`Version : {ver}`")
 
 
