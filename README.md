@@ -2,3 +2,4 @@
  Basic Discord Bot with python
 
 ### Features
+* sd
