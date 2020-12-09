@@ -23,12 +23,12 @@ cov_key = os.getenv('covid_api')
 kommand = commands.Bot(command_prefix="!!")
 client = discord.Client()
 
-ver = "v1.6.2"
+ver = "v1.0"
 
 @kommand.event
 async def on_ready():
     await kommand.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(ver))
-    print("Done")
+    print("Bot ready")
 
 
 @kommand.event
