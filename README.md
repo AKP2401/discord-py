@@ -1,6 +1,10 @@
 # discord-py-bot
  Basic Discord Bot with python
 
+## Instructions
+* Run setup.py for auto-installing the needed packages (Not Mandatory).
+* Comment out features that aren't required.
+
 ## Features
 * Hello
 * Ping
