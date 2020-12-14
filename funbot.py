@@ -6,6 +6,7 @@ import ranstr
 import requests
 import datetime
 import random
+import time
 import json
 from sid import gt32
 from sid import gt64
@@ -48,7 +49,9 @@ async def hello(ctx, *arg):
 
 @kommand.command(aliases=['pong'])
 async def ping(ctx):
-    await ctx.send(f'Ping : {round(kommand.latency * 1000)}ms (Wrong)')
+    before = time.monotonic()
+    ping = (time.monotonic() - before) * 100
+    await ctx.send(f"Your ping is {int(ping)}ms")
 
 
 @kommand.command()
