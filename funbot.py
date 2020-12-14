@@ -46,14 +46,6 @@ async def hello(ctx, *arg):
     for i in arg:
         await ctx.send('Hello ' + i + ' !!')
 
-
-@kommand.command(aliases=['pong'])
-async def ping(ctx):
-    before = time.monotonic()
-    ping = (time.monotonic() - before) * 100
-    await ctx.send(f"Your ping is {int(ping)}ms")
-
-
 @kommand.command()
 async def kill(ctx, *args):
     if len(args) == 0:
