@@ -365,8 +365,12 @@ async def covid(ctx):
 
 @kommand.command()
 async def gif(ctx, *search):
-    lmt = 4
-    r = requests.get("https://api.tenor.com/v1/search?key=%s&q=%s&limit=%s" % (gifkey, search, lmt))
+    lmt = 6
+    tt = ''
+    for i in search:
+        if '@' not in i:
+            tt = tt + i + ' '
+    r = requests.get("https://api.tenor.com/v1/search?key=%s&q=%s&limit=%s" % (gifkey, tt, lmt))
 
     if r.status_code == 200:
         picker = random.randint(0, lmt-1)
