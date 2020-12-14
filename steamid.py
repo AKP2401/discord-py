@@ -1,6 +1,10 @@
 from requests import get
 import  string
-STEAM_API_KEY='B06A3314592ACB40FEEDAEEE216A0850'
+import  os 
+from dotenv import load_dotenv
+load_dotenv()
+
+STEAM_API_KEY = os.getenv('Steam_Key')
 BASE = int(76561197960265728)
 PREFIX = 'U:1:'
 STEAM_COMMUNITY = 'http://steamcommunity.com/id/'
