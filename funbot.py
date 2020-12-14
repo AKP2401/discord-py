@@ -19,6 +19,7 @@ TRN_Key = os.getenv('TRN_key')
 stkey = os.getenv('Steam_Key')
 gifkey = os.getenv('gif_api')
 cov_key = os.getenv('covid_api')
+r6_key = os.getenv('r6_api')
 
 kommand = commands.Bot(command_prefix="!!")
 client = discord.Client()
@@ -150,131 +151,126 @@ async def stats(ctx, game, accid):
                 await ctx.send("Choose 'y' or 'n', what's so hard about it ?:man_shrugging:")
 
     elif game == 'r6s':
-        await ctx.send("This feature is temporarily taken down , hope it restores soon :')")
-        '''sta = 0
-        def check(m):
-            return ... and m.channel == ctx.channel
-        await ctx.send("Do you the stats in DM(y/n)?")
-        try:
-            msg = await kommand.wait_for('message', check=check,  timeout=10)
-            if msg.content in ['Y', 'y']:
-                sta = 1
-                await ctx.send("`Stats coming up in DM, boi or gal`")
-            elif msg.content in ['N', 'n']:
-                sta = 0
-                await ctx.send("`Stats coming up in this Channel, boi or gal`")
-        except asyncio.TimeoutError as e:
-            sta = 0
-            await ctx.send("`You here , Snail ? Get embarrassed in front of everyone !!`:smiling_imp:")
-
-        pd = requests.get('https://r6.apitab.com/search/uplay/' + accid, headers={'apiKey' : "aadacasd"})
-        print(pd)
-        y = pd.json()
-        print(y)
-        pid = str(next(iter(y['players'])))
-        det = requests.get('https://r6.apitab.com/player/' + pid)
-        det = det.json()
-        s = 'stats'
-        lvl = det[s]['level']
-        cskl = det[s]['casualpvp_kills']
-        urkl = det[s]['unrankedpvp_kills']
-        rkl = det[s]['rankedpvp_kills']
-        total_kills = cskl + urkl + rkl
-        csd = det[s]['casualpvp_death']
-        urd = det[s]['unrankedpvp_death']
-        rd = det[s]['rankedpvp_death']
-        td = csd + urd + rd
-        cskd = det[s]['casualpvp_kd']
-        cswl = det[s]['casualpvp_wl']
-        cshp = det[s]['casualpvp_hoursplayed']
-        rkd = det[s]['rankedpvp_kd']
-        rwl = det[s]['rankedpvp_wl']
-        rhp = det[s]['rankedpvp_hoursplayed']
-        gkd = det[s]['generalpvp_kd']
-        gwl = det[s]['generalpvp_wl']
-        ghp = det[s]['generalpvp_hoursplayed']
-        hsp = det[s]['generalpve_hsrate']
-        gmk = det[s]['generalpvp_meleekills']
-        gpk = det[s]['generalpvp_penetrationkills']
-        mao = det["op_main"]["attacker"]
-        mdo = det["op_main"]["defender"]
-        maow = det['operators'][mao]['overall']['wins']
-        maok = det['operators'][mao]['overall']['kills']
-        maod = det['operators'][mao]['overall']['deaths']
-        maokd = det['operators'][mao]['overall']['kd']
-        maotp = det['operators'][mao]['overall']['timeplayed']
-        maotp = maotp / 3600
-        maotp = round(maotp, 2)
-        maowr = det['operators'][mao]['overall']['winrate']
-        mmr = det['ranked']['mmr']
-        mmrname = det['ranked']['rankname']
-        maxname = det['ranked']['maxrankname']
-        mdow = det['operators'][mdo]['overall']['wins']
-        mdok = det['operators'][mdo]['overall']['kills']
-        mdod = det['operators'][mdo]['overall']['deaths']
-        mdokd = det['operators'][mdo]['overall']['kd']
-        mdotp = det['operators'][mdo]['overall']['timeplayed']
-        mdotp = mdotp / 3600
-        propic = f'https://ubisoft-avatars.akamaized.net/{pid}/default_256_256.png'
-        mdotp = round(mdotp, 2)
-        mdowr = det['operators'][mdo]['overall']['winrate']
-        maodet = f"Details: https://www.ubisoft.com/en-gb/game/rainbow-six/siege/game-info/operators/{mao}"
-        mdodet = f"Details: https://www.ubisoft.com/en-gb/game/rainbow-six/siege/game-info/operators/{mdo}"
-        if sta == 0:
-            await ctx.send(propic)
-            await ctx.send(f"**{accid}**")
-            await ctx.send("***GENERAL :***")
-            await ctx.send(
-            f"```Level               : {lvl}\nGeneral K/D         : {gkd}\nGeneral W/L         : {gwl}\nTotal Kills         : {total_kills}\nTotal Deaths        : {td}\nHeadshot Percentage : {hsp} \nMelee Kills         : {gmk}\nPenetration Kills   : {gpk}\nHours Played        : {ghp} hours```")
-            await ctx.send("***CASUAL :***")
-            await ctx.send(
-            f"```K/D          : {cskd}\nW/L          : {cswl}\nKills        : {cskl}\nDeaths       : {csd}\nHours Played : {cshp} hours```")
-            await ctx.send("***RANKED :***")
-            await ctx.send(
-            f"```MMR          : {mmr}\nRank         : {mmrname}\nMax Rank     : {maxname}\nK/D          : {rkd}\nW/L          : {rwl}\nKills        : {rkl}\nDeaths       : {rd}\nHours Played : {rhp} hours```")
-            await ctx.send("***Main Attacker :***")
-            await ctx.send(file=discord.File(f'icons/{mao.lower()}.png'))
-            await ctx.send(f"       **{mao}**")
-            await ctx.send(
-            f'```Wins        : {maow}\nKills       : {maok}\nDeaths      : {maod}\nK/D         : {maokd}\nTime Played : {maotp} hours\nWinrate     : {maowr} %\n```')
-            await ctx.send(maodet)
-            await ctx.send("***Main Defender :***")
-            await ctx.send(file=discord.File(f'icons/{mdo.lower()}.png'))
-            await ctx.send(f"       **{mdo}**")
-            await ctx.send(
-            f'```Wins        : {mdow}\nKills       : {mdok}\nDeaths      : {mdod}\nK/D         : {mdokd}\nTime Played : {mdotp} hours\nWinrate     : {mdowr} %\n```')
-            await ctx.send(mdodet)
-
-            await ctx.send(f"For more details :\n ")
-            await ctx.send(f"https://r6.tracker.network/profile/pc/{accid}")
-        elif sta == 1:
-            await ctx.author.send(propic)
-            await ctx.author.send(f"**{accid}**")
-            await ctx.author.send("***GENERAL :***")
-            await ctx.author.send(
-                f"```Level               : {lvl}\nGeneral K/D         : {gkd}\nGeneral W/L         : {gwl}\nTotal Kills         : {total_kills}\nTotal Deaths        : {td}\nHeadshot Percentage : {hsp} \nMelee Kills         : {gmk}\nPenetration Kills   : {gpk}\nHours Played        : {ghp} hours```")
-            await ctx.author.send("***CASUAL :***")
-            await ctx.author.send(
-                f"```K/D          : {cskd}\nW/L          : {cswl}\nKills        : {cskl}\nDeaths       : {csd}\nHours Played : {cshp} hours```")
-            await ctx.author.send("***RANKED :***")
-            await ctx.author.send(
-                f"```MMR          : {mmr}\nRank         : {mmrname}\nMax Rank     : {maxname}\nK/D          : {rkd}\nW/L          : {rwl}\nKills        : {rkl}\nDeaths       : {rd}\nHours Played : {rhp} hours```")
-            await ctx.author.send("***Main Attacker :***")
-            await ctx.author.send(file=discord.File(f'icons/{mao.lower()}.png'))
-            await ctx.author.send(f"       **{mao}**")
-            await ctx.author.send(
-                f'```Wins        : {maow}\nKills       : {maok}\nDeaths      : {maod}\nK/D         : {maokd}\nTime Played : {maotp} hours\nWinrate     : {maowr} %\n```')
-            await ctx.author.send(maodet)
-            await ctx.author.send("***Main Defender :***")
-            await ctx.author.send(file=discord.File(f'icons/{mdo.lower()}.png'))
-            await ctx.author.send(f"       **{mdo}**")
-            await ctx.author.send(
-                f'```Wins        : {mdow}\nKills       : {mdok}\nDeaths      : {mdod}\nK/D         : {mdokd}\nTime Played : {mdotp} hours\nWinrate     : {mdowr} %\n```')
-            await ctx.author.send(mdodet)
-
-            await ctx.author.send(f"For more details :\n ")
-            await ctx.author.send(f"https://r6.tracker.network/profile/pc/{accid}")
-            '''
+        gen = requests.get(f'https://api2.r6stats.com/public-api/stats/{accid}/pc/generic', headers= {'Authorization':r6_key})
+        gen = gen.json()
+        sea = requests.get(f'https://api2.r6stats.com/public-api/stats/{accid}/pc/seasonal', headers= {'Authorization':r6_key})
+        sea = sea.json()
+        ops = requests.get(f'https://api2.r6stats.com/public-api/stats/{accid}/pc/operators', headers= {'Authorization':r6_key})
+        ops = ops.json()
+        name = gen['username']
+        id = gen['uplay_id']
+        avatar = gen['avatar_url_256']
+        lvl = gen['progression']['level']
+        kd = gen['stats']['general']['kd']
+        kills = gen['stats']['general']['kills']
+        assists = gen['stats']['general']['assists']
+        meleek = gen['stats']['general']['melee_kills']
+        pk = gen['stats']['general']['penetration_kills']
+        gd = gen['stats']['general']['gadgets_destroyed']
+        playtime = gen['stats']['general']['playtime']
+        playtime = round(playtime/3600, 2)
+        wl = gen['stats']['general']['wl']
+        no_games = gen['stats']['general']['games_played']
+        hsp = gen['stats']['general']['headshots']
+        hsp = round(hsp/kills*100, 2)
+        ckills = gen['stats']['queue']['casual']['kills']
+        ckd = gen['stats']['queue']['casual']['kd']
+        cwl = gen['stats']['queue']['casual']['wl']
+        cpt = gen['stats']['queue']['casual']['playtime']
+        cpt = round(cpt/3600, 2)
+        rkills = gen['stats']['queue']['ranked']['kills']
+        rkd = gen['stats']['queue']['ranked']['kd']
+        rwl = gen['stats']['queue']['ranked']['wl']
+        rpt = gen['stats']['queue']['ranked']['playtime']
+        rpt = round(rpt/3600, 2)  
+        alops = ops['operators']
+        best = 0
+        bestaop = ''
+        bestdop = ''
+        for i in alops:
+            if i['role'] == 'Attacker':
+                if i['experience'] > best:
+                    best = i['experience']
+                    bestaop = i['name']
+        best = 0
+        for i in alops:
+            if i['role'] == 'Defender':
+                if i['experience'] > best:
+                    best = i['experience']
+                    bestdop = i['name']
+        mmr = sea['seasons']['neon_dawn']['regions']['ncsa'][0]['mmr']
+        rank = sea['seasons']['neon_dawn']['regions']['ncsa'][0]['rank_text']
+        max_mmr = sea['seasons']['neon_dawn']['regions']['ncsa'][0]['max_mmr']
+        max_rank = sea['seasons']['neon_dawn']['regions']['ncsa'][0]['max_rank_text']
+        #General
+        await ctx.send(avatar)
+        await ctx.send(f"**{name}**")
+        det = ''
+        det = det + str(f"Level:               {lvl}\n")
+        det = det + str(f"Kills:               {kills}\n")
+        det = det + str(f"Headshot Percentage: {hsp} % \n")
+        det = det + str(f"K/D:                 {kd}\n")
+        det = det + str(f"WL:                  {wl}\n")
+        det = det + str(f"Assists:             {assists}\n")
+        det = det + str(f"Melee:               {meleek}\n")
+        det = det + str(f"GadgetsDestroyed:    {gd}\n")
+        det = det + str(f"Penetration Kills:   {pk}\n")
+        det = det + str(f"Playtime:            {playtime} hours\n")
+        det = det + str(f"Matches:             {no_games}\n")
+        await ctx.send(f"```{det}```")
+        #Casual
+        await ctx.send("**Casual**")
+        det = ''
+        det = det + str(f"Kills:    {ckills}\n")
+        det = det + str(f"KD:       {ckd}\n")
+        det = det + str(f"WL:       {cwl}\n")
+        det = det + str(f"Playtime: {cpt} hours")
+        await ctx.send(f"```{det}```")
+        #Ranked
+        await ctx.send("**Ranked**")
+        await ctx.send(file=discord.File(f"icons/{rank}.PNG"))
+        det = ''
+        det = det + str(f"Kills:    {rkills}\n")
+        det = det + str(f"KD:       {rkd}\n")
+        det = det + str(f"WL:       {rwl}\n")
+        det = det + str(f"Playtime: {rpt} hours\n")
+        det = det + str(f"Rank:     {rank}\n")
+        det = det + str(f"MMR:      {mmr}\n")
+        det = det + str(f"Max Rank: {max_rank}\n")
+        det = det + str(f"Max MMR:  {max_mmr}")
+        await ctx.send(f"```{det}```")
+        #Operators
+        for i in alops:
+            if i['role'] == 'Attacker':
+                if bestaop == i['name']:
+                    await ctx.send("**BEST ATTACKER**")
+                    await ctx.send(i['badge_image'])
+                    det = ''
+                    await ctx.send(f'**{bestaop}**')
+                    det = det + str(f"CTU:        {i['ctu']}\n")
+                    det = det + str(f"Kills:      {i['kills']}\n")
+                    det = det + str(f"KD:         {round(i['kd'], 2)} \n")
+                    det = det + str(f"Experience: {i['experience']}\n")
+                    det = det + str(f"Playtime :  {round(i['playtime']/3600, 2)} hours\n")
+                    for j in i['abilities']:
+                        det = det + (f"{j['ability']}: {j['value']}\n")
+                    await ctx.send(f"```{det}```")
+        for i in alops:
+            if i['role'] == 'Defender':
+                if bestdop == i['name']:
+                    await ctx.send("**BEST DEFENDER**")
+                    await ctx.send(i['badge_image'])
+                    det = ''
+                    await  ctx.send(f'**{bestdop}**')
+                    det = det + str(f"CTU:        {i['ctu']}\n")
+                    det = det + str(f"Kills:      {i['kills']}\n")
+                    det = det + str(f"KD:         {round(i['kd'], 2)} \n")
+                    det = det + str(f"Experience: {i['experience']}\n")
+                    det = det + str(f"Playtime :  {round(i['playtime']/3600, 2)} hours\n")
+                    for j in i['abilities']:
+                        det = det + (f"{j['ability']}: {j['value']}\n")
+                    await ctx.send(f"```{det}```")
+        await ctx.send(f"https://r6stats.com/stats/{id}/")
     elif game == 'csgo':
         s64 = gt64(accid)
         pd = requests.get(
