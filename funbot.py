@@ -378,7 +378,7 @@ async def gif(ctx, *search):
 @kommand.command()
 async def randoms(ctx):
     await ctx.send("Choose from the following :")
-    await ctx.send("url, email, word, sentence, paragraph")
+    await ctx.send("url, email, word, sentence, paragraph, number")
     def check(m):
         return ... and m.channel == ctx.channel
     try:

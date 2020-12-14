@@ -1,5 +1,5 @@
 from essential_generators import DocumentGenerator
-
+import random
 gen = DocumentGenerator()
 
 types = ['url','email','phone','word','sentence','paragraph']
@@ -19,4 +19,6 @@ def generate(type):
         return gen.sentence()
     if type == 'paragraph':
         return gen.paragraph()
+    if type == 'number':
+        return random.randint(0, 10000)
 
