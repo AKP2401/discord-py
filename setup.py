@@ -3,6 +3,7 @@ import sys
 
 def install(package):
     subprocess.check_call([sys.executable, '-m', 'pip', 'install', package])
+    
 print("Installing Discord.py...")
 install('discord.py')
 print('Discord.py installation complete\n\n')
